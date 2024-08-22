@@ -1,0 +1,41 @@
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+import javax.imageio.ImageIO;
+
+public class FurnitureWebsite extends JFrame {
+    private JPanel panel;
+    private JLabel label;
+
+    public FurnitureWebsite() {
+        setTitle("Furniture Gallery");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(0, 3));
+
+        String[] furnitureImages = {
+            "https://s4.ezgif.com/tmp/ezgif-4-f7ae254bc8.jpg",
+            "https://s4.ezgif.com/tmp/ezgif-4-f7ae254bc8.jpg",
+            "https://s4.ezgif.com/tmp/ezgif-4-f7ae254bc8.jpg"
+        };
+
+        for (String imageUrl : furnitureImages) {
+            try {
+                URL url = new URL(imageUrl);
+                Image image = ImageIO.read(url);
+                label = new JLabel(new ImageIcon(image));
+                panel.add(label);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        add(panel);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new FurnitureWebsite());
+    }
+}
